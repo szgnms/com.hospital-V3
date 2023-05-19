@@ -37,11 +37,27 @@ public enum Diseases {
     LAUCOMA("EyeDiseases","Floor_6"),
     MACULAR_DEGENERATION("EyeDiseases","Floor_6"),
     RETINAL_DETACHMENT("EyeDiseases","Floor_6"),
-    DRY_EYE_SYNDROME("EyeDiseases","Floor_6")
+    DRY_EYE_SYNDROME("EyeDiseases","Floor_6"),
+    HYPERTENSION("InternalMedicine","Floor_7"),
+    ASTHMA("InternalMedicine","Floor_7"),
+    CHRONIC_KIDNEY_DISEASE("InternalMedicine","Floor_7"),
+    LIVER_CIRRHOSIS("InternalMedicine","Floor_7"),
 
+    ANOREXIA("NutritionAndDiet","Floor_8"),
+    DIABETES_RELATED_NUTRITION("NutritionAndDiet","Floor_8"),
+    DIGESTIVE_PROBLEMS("NutritionAndDiet","Floor_8"),
+    MALNUTRITION("NutritionAndDiet","Floor_8"),
 
+    DENTAL_CARIES("OralAndDentalDiseases","Floor_9"),
+    GUM_DISEASES("OralAndDentalDiseases","Floor_9"),
+    TOOTH_LOSS("OralAndDentalDiseases","Floor_9"),
+    BAD_BREATH("OralAndDentalDiseases","Floor_9"),
+    TEMPOROMANDIBULAR("OralAndDentalDiseases","Floor_9"),
 
-    ;
+    CORONARY_ARTERY_DISEASE("Cardiology","Floor_10"),
+    MYOCARDIAL_INFARCTION("Cardiology","Floor_10"),
+    CONGESTIVE_HEART_FAILURE("Cardiology","Floor_10"),
+    HYPERTENSION_HIGH_BLOOD_PRESSURE("Cardiology","Floor_10");
 
     private final String clinicName;
     private final String floor;
