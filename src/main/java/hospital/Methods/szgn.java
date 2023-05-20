@@ -10,6 +10,9 @@ public class szgn {
 static Scanner scan=new Scanner(System.in);
   static String menuSecim;
    static int count=0;
+
+   static int doctorId=1000;
+   static int patientId=2000;
       public void hospitalRun(){
         System.out.println(GREEN +"================="+CYAN+" WELCOME TO DEV3 HOSPITAL"+GREEN+"=================\n"+RED+"Please select ->" );
         System.out.println(GREEN+"""
