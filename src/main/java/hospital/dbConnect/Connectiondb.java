@@ -2,13 +2,13 @@ package hospital.dbConnect;
 
 import java.sql.*;
 
-public class Connection {
+public class Connectiondb {
     static String url= "jdbc:postgresql://localhost:5432/hospital_db";
     static String username="dev3";
     static String password= "123456Aa";
     static java.sql.Connection conn  ;
-    static Statement st  ;
-    static ResultSet rs;
+    protected static Statement st  ;
+     protected static ResultSet rs;
     static {
 
         try {
