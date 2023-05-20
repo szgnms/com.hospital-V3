@@ -45,7 +45,7 @@ static Scanner scan=new Scanner(System.in);
         System.out.println();
 
            hospitalRun();
-           hospitalRun();
+
     }
 
 
