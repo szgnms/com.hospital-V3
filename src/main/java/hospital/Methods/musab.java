@@ -11,13 +11,13 @@ import static hospital.Methods.color.*;
 import static hospital.Methods.szgn.*;
 
 
-
 public class musab extends Connectiondb {
 
     String patientName;
     String patientSurname;
     String patientDisease;
-    int  patientIdSearch;
+    int patientIdSearch;
+
     void patientMenu() {
         System.out.println(GREEN + "=================" + BLUE + "PATIENT MENU" + GREEN + "=================");
         System.out.println("""
@@ -41,7 +41,6 @@ public class musab extends Connectiondb {
     }
 
 
-
     private void patientRegistiration() {
         System.out.println("Please enter the Name of the Patient");
         patientName = scan.next();
@@ -50,7 +49,7 @@ public class musab extends Connectiondb {
         System.out.println("Please enter the Disease of the Patient");
         patientDisease = scan.next();
 
-        new SqlQueries().addPatient(patientId,patientName,patientSurname,patientDisease);
+        new SqlQueries().addPatient(patientId, patientName, patientSurname, patientDisease);
         patientId++;
 
     }
@@ -67,42 +66,42 @@ public class musab extends Connectiondb {
                 6-Main Menu
                 """);
 
-        switch (menuSecim){
+        switch (menuSecim) {
             case "1" -> patientIdSearch();
-            case "2" ->
-            case "3" ->
-            case "4" ->
-            case "5" ->
-            case "6" ->
-                default -> wrongInputMethod();
+            case "2" -> patientNameSearch();
+            case "3" -> patientSurnameSearch();
+            case "4" -> patientDiseaseSearch();
+            case "5" -> allPatients();
+            case "6" -> patientMenu();
+            default -> wrongInputMethod();
 
         }
     }
 
-    private void patientIdSearch(){
+    private void patientIdSearch() {
         System.out.println("please enter patient id");
-        patientIdSearch=scan.nextInt();
-        new SqlQueries().printPatientWithValue("t_patients","patient_id",patientIdSearch);
+        patientIdSearch = scan.nextInt();
+        new SqlQueries().printPatientWithValue("t_patients", "patient_id", patientIdSearch);
 
     }
 
-    private void patientNameSearch(){
+    private void patientNameSearch() {
         System.out.println("please enter patient name");
-        patientName=scan.next();
-        new SqlQueries().printPatientWithValue("t_patients","name",patientName);
+        patientName = scan.next();
+        new SqlQueries().printPatientWithValue("t_patients", "name", patientName);
     }
 
-    private void patientSurnameSearch(){
+    private void patientSurnameSearch() {
         System.out.println("please enter patient Surname");
-        patientSurname=scan.next();
-        new SqlQueries().printPatientWithValue("t_patients","surname",patientSurname);
+        patientSurname = scan.next();
+        new SqlQueries().printPatientWithValue("t_patients", "surname", patientSurname);
     }
 
 
-    private void patientDiseaseSearch(){
+    private void patientDiseaseSearch() {
         System.out.println("please enter patient disease");
-        patientDisease=scan.next();
-        new SqlQueries().printPatientWithValue("t_patients","disease",patientDisease);
+        patientDisease = scan.next();
+        new SqlQueries().printPatientWithValue("t_patients", "disease", patientDisease);
     }
 
     private void allPatients() {
@@ -111,15 +110,15 @@ public class musab extends Connectiondb {
 
 
     public void patientDischarged() {
-        int ptId=0;
-        String ptName="";
-        String ptSurname="";
-        String ptDisease="";
-        int ptDocId=0;
+        int ptId = 0;
+        String ptName = "";
+        String ptSurname = "";
+        String ptDisease = "";
+        int ptDocId = 0;
         System.out.println("please enter patient id");
-        patientIdSearch=scan.nextInt();
+        patientIdSearch = scan.nextInt();
         try {
-            rs= st.executeQuery("select  id from patient where patient_id like "+patientIdSearch+" ");
+            rs = st.executeQuery("select  id from patient where patient_id like " + patientIdSearch + " ");
             while (rs.next()) {
                 ptId = rs.getInt(1);
             }
@@ -127,23 +126,23 @@ public class musab extends Connectiondb {
             throw new RuntimeException(e);
         }
         try {
-            rs= st.executeQuery("select  name from patient where patient_id like "+patientIdSearch+" ");
+            rs = st.executeQuery("select  name from patient where patient_id like " + patientIdSearch + " ");
             while (rs.next()) {
-               ptName = rs.getString(1);
+                ptName = rs.getString(1);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         try {
-            rs= st.executeQuery("select  surname from patient where patient_id like "+patientIdSearch+" ");
+            rs = st.executeQuery("select  surname from patient where patient_id like " + patientIdSearch + " ");
             while (rs.next()) {
-               ptSurname = rs.getString(1);
+                ptSurname = rs.getString(1);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         try {
-            rs= st.executeQuery("select  diseases from patient where patient_id like "+patientIdSearch+" ");
+            rs = st.executeQuery("select  diseases from patient where patient_id like " + patientIdSearch + " ");
             while (rs.next()) {
                 ptDisease = rs.getString(1);
             }
@@ -152,7 +151,7 @@ public class musab extends Connectiondb {
         }
 
         try {
-            rs= st.executeQuery("select  doctor_id from patient where patient_id like "+patientIdSearch+" ");
+            rs = st.executeQuery("select  doctor_id from patient where patient_id like " + patientIdSearch + " ");
             while (rs.next()) {
                 ptDocId = rs.getInt(1);
             }
@@ -161,13 +160,13 @@ public class musab extends Connectiondb {
         }
 
 
-        new SqlQueries().addDischargedPatient( ptId,ptName,ptSurname,ptDisease,ptDocId);
-        new SqlQueries().deletePersonWithValue("t_patients","id",patientIdSearch);
+        new SqlQueries().addDischargedPatient(ptId, ptName, ptSurname, ptDisease, ptDocId);
+        new SqlQueries().deletePersonWithValue("t_patients", "id", patientIdSearch);
     }
 
     public void wrongInputMethod() {
-        System.out.println(RED+"PLEASE SELECT CORRECT \nREDIRECTING TO MENU");
-        for (int i = 0; i <5 ; i++) {
+        System.out.println(RED + "PLEASE SELECT CORRECT \nREDIRECTING TO MENU");
+        for (int i = 0; i < 5; i++) {
             System.out.print(". ");
             try {
                 TimeUnit.SECONDS.sleep(1);
