@@ -25,7 +25,7 @@ static Scanner scan=new Scanner(System.in);
         
     }
 
-    private void wrongInputMethod() {
+    public void wrongInputMethod() {
     }
 
 
