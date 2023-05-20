@@ -189,6 +189,13 @@ public class SqlQueries extends Connection {
         System.out.println("---------------------------------------------------------------------------");
 
     }
+    public <T> void deleteDoctorWithValue(String tableName, String columnName, T value) {
+        try {
+            rs = st.executeQuery("delete from " + tableName + " where " + columnName + " ilike '" + value + "' ");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }
 

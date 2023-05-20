@@ -1,6 +1,10 @@
 package hospital.Methods;
 
-import java.util.Scanner;
+import hospital.dbConnect.SqlQueries;
+
+import static hospital.Methods.szgn.doctorId;
+import static hospital.Methods.szgn.scan;
+
 
 import static java.awt.Color.*;
 
@@ -29,12 +33,24 @@ public class omer {
 
     }
 
+    static
     private void createDoctor() {
+        System.out.println("Please enter the Name of the Doctor");
+        String doctorName= scan.next();
+        System.out.println("Please enter the Name of the Doctor");
+        String doctorSurname= scan.next();
+        System.out.println("Please enter the Branch of the Doctor");
+        String doctorBranch=scan.next();
+
+        new SqlQueries().addDoctor(doctorId,doctorName,doctorSurname,doctorBranch);
+        doctorId++;
     }
 
 
-
     private void deleteDoctor() {
+        System.out.println("Please enter the Name of the Doctor");
+        String doctorName=scan.next();
+        new SqlQueries().deleteDoctorWithValue("t_doctors","name",doctorName);
     }
 
 
