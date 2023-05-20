@@ -28,7 +28,8 @@ static Scanner scan=new Scanner(System.in);
         
     }
 
-     void wrongInputMethod() {
+
+    public void wrongInputMethod() {
         System.out.println(RED+"PLEASE SELECT CORRECT \nREDIRECTING TO MENU");
         for (int i = 0; i <5 ; i++) {
             System.out.print(". ");
@@ -39,7 +40,6 @@ static Scanner scan=new Scanner(System.in);
             }
         }
         System.out.println();
-
 
            hospitalRun();
     }
