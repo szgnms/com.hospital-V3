@@ -50,7 +50,7 @@ public class omer {
     private void deleteDoctor() {
         System.out.println("Please enter the Name of the Doctor");
         String doctorName=scan.next();
-        new SqlQueries().deleteDoctorWithValue("t_doctors","name",doctorName);
+        new SqlQueries().deletePersonWithValue("t_doctors","name",doctorName);
     }
 
 

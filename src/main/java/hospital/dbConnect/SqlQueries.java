@@ -2,7 +2,7 @@ package hospital.dbConnect;
 
 import java.sql.SQLException;
 
-public class SqlQueries extends Connection {
+public class SqlQueries extends Connectiondb {
 
     public void createDoctorTable() {
         try {
@@ -11,6 +11,19 @@ public class SqlQueries extends Connection {
                     "name VARCHAR(255) NOT NULL," +
                     "surname VARCHAR(255) NOT NULL," +
                     "branch varchar(255) not null)");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void createDischargePatient() {
+        try {
+            st.execute("CREATE TABLE IF NOT EXISTS t_discharge_patient(" +
+                    "patient_id INTEGER PRIMARY KEY not null," +
+                    "name VARCHAR(255) NOT NULL," +
+                    "surname VARCHAR(255) NOT NULL," +
+                    "diseases varchar(255) not null," +
+                    "doktor_id INTEGER");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -43,6 +56,15 @@ public class SqlQueries extends Connection {
     public void addPatient(int id, String name, String surname, String diseases) {
         try {
             st.execute("insert into t_patients values(" + id + ",'" + name + "'," + "'" + surname + "'," + "'" + diseases + "')");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void addDischargedPatient(int id, String name, String surname, String diseases, int doctorId) {
+        try {
+            st.execute("insert into t_discharge_patient values(" + id + ",'" + name + "'," + "'" + surname + "'," + "'" + diseases + "'"+doctorId+" )");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -189,13 +211,15 @@ public class SqlQueries extends Connection {
         System.out.println("---------------------------------------------------------------------------");
 
     }
-    public <T> void deleteDoctorWithValue(String tableName, String columnName, T value) {
+    public <T> void deletePersonWithValue(String tableName, String columnName, T value) {
         try {
             rs = st.executeQuery("delete from " + tableName + " where " + columnName + " ilike '" + value + "' ");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
+
 
 }
 
