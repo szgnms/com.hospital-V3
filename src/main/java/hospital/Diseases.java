@@ -1,70 +1,75 @@
 package hospital;
 
+import hospital.Clinics.*;
+import hospital.Methods.Floors;
+
 public enum Diseases {
-    RHINOPLASTY("AestheticsPlasticSurgery", "Floor_1"),
+    RHINOPLASTY(new AestheticsPlasticSurgery().clinicName(), Floors.FLOOR_1),
 
-    BREAST_AUGMENTATION_OR_REDUCTIOM("AestheticsPlasticSurgery", "Floor_1"),
+    BREAST_AUGMENTATION_OR_REDUCTIOM(new AestheticsPlasticSurgery().clinicName(), Floors.FLOOR_1),
 
-    FACELIFT("AestheticsPlasticSurgery", "Floor_1"),
+    FACELIFT(new AestheticsPlasticSurgery().clinicName(), Floors.FLOOR_1),
 
-    LIPOSUCTION("AestheticsPlasticSurgery", "Floor_1"),
+    LIPOSUCTION(new AestheticsPlasticSurgery().clinicName(), Floors.FLOOR_1),
 
-    ABDOMINOLOPLASTY("AestheticsPlasticSurgery", "Floor_1"),
+    ABDOMINOLOPLASTY(new AestheticsPlasticSurgery().clinicName(), Floors.FLOOR_1),
 
-    COMPICATIONS_OF_GENERAL_ANESTHESIA("AnesthesiaAndReanimation", "Floor_2"),
-    ANESTHESIA_ALLERGY("AnesthesiaAndReanimation", "Floor_2"),
-    POST_ANESTHETIC_SHOCK("AnesthesiaAndReanimation", "Floor_2"),
-    PATIENTS_REQUIRING_INTENSIVE_CARE_UNIT_ICU("AnesthesiaAndReanimation", "Floor_2"),
+    COMPICATIONS_OF_GENERAL_ANESTHESIA(new AnesthesiaAndReanimation().clinicName(), Floors.FLOOR_2),
+    ANESTHESIA_ALLERGY(new AnesthesiaAndReanimation().clinicName(), Floors.FLOOR_2),
+    POST_ANESTHETIC_SHOCK(new AnesthesiaAndReanimation().clinicName(), Floors.FLOOR_2),
+    PATIENTS_REQUIRING_INTENSIVE_CARE_UNIT_ICU(new AnesthesiaAndReanimation().clinicName(), Floors.FLOOR_2),
 
-    ECZEMA("Dermatology", "Floor_3"),
-    PSORIASIS("Dermatology", "Floor_3"),
-    SKIN_CANCER("Dermatology", "Floor_3"),
-    ACNE("Dermatology", "Floor_3"),
-    FUNGAL_INFECTIONS("Dermatology", "Floor_3"),
-    HEART_ATTACK("EmergencyAndAmbulances", "Floor_4"),
-    STROKE("EmergencyAndAmbulances", "Floor_4"),
-    FRACTURES_DUE_TO_ACCIDENTS("EmergencyAndAmbulances", "Floor_4"),
-    RESPIRATORY_DISTRESS("EmergencyAndAmbulances", "Floor_4"),
-    BLEEDING("EmergencyAndAmbulances", "Floor_4"),
+    ECZEMA(new Dermatology().clinicName(), Floors.FLOOR_3),
+    PSORIASIS(new Dermatology().clinicName(), Floors.FLOOR_3),
+    SKIN_CANCER(new Dermatology().clinicName(), Floors.FLOOR_3),
+    ACNE(new Dermatology().clinicName(), Floors.FLOOR_3),
+    FUNGAL_INFECTIONS(new Dermatology().clinicName(), Floors.FLOOR_3),
+    HEART_ATTACK(new EmergencyAndAmbulances().clinicName(), Floors.FLOOR_4),
+    STROKE(new EmergencyAndAmbulances().clinicName(),  Floors.FLOOR_4),
+    FRACTURES_DUE_TO_ACCIDENTS(new EmergencyAndAmbulances().clinicName(),  Floors.FLOOR_4),
+    RESPIRATORY_DISTRESS(new EmergencyAndAmbulances().clinicName(),  Floors.FLOOR_4),
+    BLEEDING(new EmergencyAndAmbulances().clinicName(),  Floors.FLOOR_4),
 
-    DIABETES("EndocrinologyAndMetabolicDiseases","Floor_5"),
-    THYROID("EndocrinologyAndMetabolicDiseases","Floor_5"),
-    OBESITY("EndocrinologyAndMetabolicDiseases","Floor_5"),
-    CUSHINGS_SYNDROME("EndocrinologyAndMetabolicDiseases","Floor_5"),
-    ADDISONS_SYNDROME("EndocrinologyAndMetabolicDiseases","Floor_5"),
+    DIABETES(new EndocrinologyAndMetabolicDiseases().clinicName(), Floors.FLOOR_5),
+    THYROID(new EndocrinologyAndMetabolicDiseases().clinicName(), Floors.FLOOR_5),
+    OBESITY(new EndocrinologyAndMetabolicDiseases().clinicName(), Floors.FLOOR_5),
+    CUSHINGS_SYNDROME(new EndocrinologyAndMetabolicDiseases().clinicName(), Floors.FLOOR_5),
+    ADDISONS_SYNDROME(new EndocrinologyAndMetabolicDiseases().clinicName(), Floors.FLOOR_5),
 
-    CATARACTS("EyeDiseases","Floor_6"),
-    LAUCOMA("EyeDiseases","Floor_6"),
-    MACULAR_DEGENERATION("EyeDiseases","Floor_6"),
-    RETINAL_DETACHMENT("EyeDiseases","Floor_6"),
-    DRY_EYE_SYNDROME("EyeDiseases","Floor_6"),
-    HYPERTENSION("InternalMedicine","Floor_7"),
-    ASTHMA("InternalMedicine","Floor_7"),
-    CHRONIC_KIDNEY_DISEASE("InternalMedicine","Floor_7"),
-    LIVER_CIRRHOSIS("InternalMedicine","Floor_7"),
+    CATARACTS(new EyeDiseases().clinicName(), Floors.FLOOR_6),
+    LAUCOMA(new EyeDiseases().clinicName(),Floors.FLOOR_6),
+    MACULAR_DEGENERATION(new EyeDiseases().clinicName(),Floors.FLOOR_6),
+    RETINAL_DETACHMENT(new EyeDiseases().clinicName(),Floors.FLOOR_6),
+    DRY_EYE_SYNDROME(new EyeDiseases().clinicName(),Floors.FLOOR_6),
+    HYPERTENSION(new InternalMedicine().clinicName(),Floors.FLOOR_7),
+    ASTHMA(new InternalMedicine().clinicName(),Floors.FLOOR_7),
+    CHRONIC_KIDNEY_DISEASE(new InternalMedicine().clinicName(),Floors.FLOOR_7),
+    LIVER_CIRRHOSIS(new InternalMedicine().clinicName(),Floors.FLOOR_7),
 
-    ANOREXIA("NutritionAndDiet","Floor_8"),
-    DIABETES_RELATED_NUTRITION("NutritionAndDiet","Floor_8"),
-    DIGESTIVE_PROBLEMS("NutritionAndDiet","Floor_8"),
-    MALNUTRITION("NutritionAndDiet","Floor_8"),
+    ANOREXIA(new NutritionAndDiet().clinicName(),Floors.FLOOR_8),
+    DIABETES_RELATED_NUTRITION(new NutritionAndDiet().clinicName(),Floors.FLOOR_8),
+    DIGESTIVE_PROBLEMS(new NutritionAndDiet().clinicName(),Floors.FLOOR_8),
+    MALNUTRITION(new NutritionAndDiet().clinicName(),Floors.FLOOR_8),
 
-    DENTAL_CARIES("OralAndDentalDiseases","Floor_9"),
-    GUM_DISEASES("OralAndDentalDiseases","Floor_9"),
-    TOOTH_LOSS("OralAndDentalDiseases","Floor_9"),
-    BAD_BREATH("OralAndDentalDiseases","Floor_9"),
-    TEMPOROMANDIBULAR("OralAndDentalDiseases","Floor_9"),
+    DENTAL_CARIES(new OralAndDentalDiseases().clinicName(), Floors.FLOOR_9),
+    GUM_DISEASES(new OralAndDentalDiseases().clinicName(),Floors.FLOOR_9),
+    TOOTH_LOSS(new OralAndDentalDiseases().clinicName(), Floors.FLOOR_9),
+    BAD_BREATH(new OralAndDentalDiseases().clinicName(), Floors.FLOOR_9),
+    TEMPOROMANDIBULAR(new OralAndDentalDiseases().clinicName(), Floors.FLOOR_9),
 
-    CORONARY_ARTERY_DISEASE("Cardiology","Floor_10"),
-    MYOCARDIAL_INFARCTION("Cardiology","Floor_10"),
-    CONGESTIVE_HEART_FAILURE("Cardiology","Floor_10"),
-    HYPERTENSION_HIGH_BLOOD_PRESSURE("Cardiology","Floor_10");
+    CORONARY_ARTERY_DISEASE(new Cardiology().clinicName(), Floors.FLOOR_10),
+    MYOCARDIAL_INFARCTION(new Cardiology().clinicName(),Floors.FLOOR_10),
+    CONGESTIVE_HEART_FAILURE(new Cardiology().clinicName(),Floors.FLOOR_10),
+    HYPERTENSION_HIGH_BLOOD_PRESSURE(new Cardiology().clinicName(),Floors.FLOOR_10);
 
+    private static String AestheticsPlasticSurgery;
     private final String clinicName;
     private final String floor;
 
-    Diseases(String clinicName, String floor) {
+
+    Diseases(String clinicName, Floors floor) {
         this.clinicName = clinicName;
-        this.floor = floor;
+        this.floor = floor.toString();
     }
 
     public String getClinicName() {
