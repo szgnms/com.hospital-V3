@@ -8,6 +8,7 @@ public class Connection {
     static String password= "123456Aa";
     static java.sql.Connection conn  ;
     static Statement st  ;
+    static ResultSet rs;
     static {
 
         try {
