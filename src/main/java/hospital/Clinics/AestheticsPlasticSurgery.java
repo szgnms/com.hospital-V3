@@ -13,4 +13,5 @@ public class AestheticsPlasticSurgery implements ClinicsInterface<String,String>
     public String clinicDoctor() {
         return "AestheticsPlasticSurgerySpecialist";
     }
+
 }
