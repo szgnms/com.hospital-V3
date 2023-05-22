@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class SqlQueries extends Connectiondb {
 
-    private PreparedStatement prst;
+
 
     public void createDoctorTable() {
         try {
@@ -62,6 +62,15 @@ public class SqlQueries extends Connectiondb {
     public void addPatient(int id, String name, String surname, String diseases) {
         try {
             st.execute("insert into t_patients values(" + id + ",'" + name + "'," + "'" + surname + "'," + "'" + diseases + "')");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void addDischargePatient(int id, String name, String surname, String diseases) {
+        try {
+            st.execute("insert into t_discharge_patient values(" + id + ",'" + name + "'," + "'" + surname + "'," + "'" + diseases + "')");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -184,9 +193,12 @@ public class SqlQueries extends Connectiondb {
 
     }
 
-    public <T> void printDoctorWithValue(String tableName, String columnName, T value) {
+    public  void printDoctorWithId( int value) {
+        String sql ="select * from t_doctors where doctor_id  = ?" ;
+        setPrepareStatement(sql);
         try {
-            rs = st.executeQuery("select * from " + tableName + " where " + columnName + " ilike '" + value + "' ");
+            prst.setInt(1, value);
+           rs=prst.executeQuery();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -218,6 +230,79 @@ public class SqlQueries extends Connectiondb {
 
     }
 
+    public  void printPatientWithId( int value) {
+        String sql ="select * from t_patients where patient_id  = ?" ;
+        setPrepareStatement(sql);
+        try {
+            prst.setInt(1, value);
+            rs=prst.executeQuery();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("---------------------------------------------------------------------------");
+        try {
+            System.out.printf("%-15s %-15.15s %-15.15s %-15.15s %-4s \n",
+                    rs.getMetaData().getColumnName(1),
+                    rs.getMetaData().getColumnName(2),
+                    rs.getMetaData().getColumnName(3),
+                    rs.getMetaData().getColumnName(4),
+                    rs.getMetaData().getColumnName(5)
+            );
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("---------------------------------------------------------------------------");
+        try {
+            while (rs.next()) {
+                System.out.printf("%-15s %-15.15s %-15.15s %-15.15s  %-4d \n",
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                         rs.getInt(5)
+                );
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("---------------------------------------------------------------------------");
+
+
+    }
+
+    public <T> void printDoctorWithValue(String tableName, String columnName, T value) {
+        try {
+            rs = st.executeQuery("select * from " + tableName + " where " + columnName + " ilike '" + value + "' ");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("---------------------------------------------------------------------------");
+        try {
+            System.out.printf("%-15s %-15.15s %-15.15s  %-4s \n",
+                    rs.getMetaData().getColumnName(1),
+                    rs.getMetaData().getColumnName(2),
+                    rs.getMetaData().getColumnName(3),
+                    rs.getMetaData().getColumnName(4) );
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("---------------------------------------------------------------------------");
+        try {
+            while (rs.next()) {
+                System.out.printf("%-15s %-15.15s %-15.15s  %-4s \n",
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4)
+                );
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("---------------------------------------------------------------------------");
+
+    }
+
     public void setPrepareStatement(String sql) {
         try {
             this.prst = conn.prepareStatement(sql);
@@ -226,28 +311,27 @@ public class SqlQueries extends Connectiondb {
         }
     }
 
-    public <T> void deleteDoctorWithName(String name) {
+    public <T> void deleteDoctorWithId(int id) {
 
-        String query = "delete from t_doctors where name = ?";
+        String query = "delete from t_doctors where doctor_id = ?";
         setPrepareStatement(query);
 
         try {
-           prst.setString(1,name);
+           prst.setInt(1,id);
            int deleted = prst.executeUpdate();
            if (deleted>0){
-               System.out.println(name+ " doctor was deleted with success");
+               System.out.println(id+ " doctor was deleted with success");
            }else{
-               System.out.println(name+" doctor not found");
+               System.out.println(id+" doctor not found");
 
-               new omer().deleteDoctor();
+               new omer().doctorMenu();
            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-
     public <T> void deletePatientWithId(int id) {
-        String query = "delete from t_patients where id = ?";
+        String query = "delete from t_patients where patient_id = ?";
         setPrepareStatement(query);
 
         try {

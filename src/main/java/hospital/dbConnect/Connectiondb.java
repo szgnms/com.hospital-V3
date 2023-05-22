@@ -9,6 +9,8 @@ public class Connectiondb {
     protected static java.sql.Connection conn  ;
     protected static Statement st  ;
     protected static ResultSet rs;
+    protected static PreparedStatement prst;
+
 
     static {
 
