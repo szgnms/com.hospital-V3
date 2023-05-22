@@ -9,10 +9,10 @@ public class Runner {
 
     public static void main(String[] args) {
         new DoctorsMethods().addBranch();
-       new SqlQueries().createDischargePatient();
+        new SqlQueries().createDischargePatient();
         new SqlQueries().createDoctorTable();
         new SqlQueries().createPatientTable();
-      new MainMenuMethods().hospitalRun();
+        new MainMenuMethods().hospitalRun();
 
     }
 }
