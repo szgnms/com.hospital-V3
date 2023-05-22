@@ -18,7 +18,7 @@ public class musab extends Connectiondb implements WorngInput {
 
     String patientName;
     String patientSurname;
-    String patientDisease;
+    static String patientDisease;
     int patientIdSearch;
 
 
@@ -59,9 +59,8 @@ public class musab extends Connectiondb implements WorngInput {
         patientName = scan.next();
         System.out.println("Please enter the Surname of the Patient");
         patientSurname = scan.next();
-        System.out.println("Please enter the Disease of the Patient");
-        patientDisease = scan.next();
-
+        System.out.println("Please select the Disease of the Patient");
+        new ListDiseases().selectDisease();
 
         new SqlQueries().addPatient(patientId, patientName, patientSurname, patientDisease);
 
