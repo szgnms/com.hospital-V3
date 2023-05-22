@@ -1,8 +1,7 @@
 package hospital.dbConnect;
-import hospital.Methods.musab;
-import hospital.Methods.omer;
+import hospital.methods.PatientsMethods;
+import hospital.methods.DoctorsMethods;
 
-import java.sql.*;
 import java.sql.SQLException;
 
 
@@ -305,13 +304,13 @@ public class SqlQueries extends Connectiondb {
 
     public void setPrepareStatement(String sql) {
         try {
-            this.prst = conn.prepareStatement(sql);
+            prst = conn.prepareStatement(sql);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public <T> void deleteDoctorWithId(int id) {
+    public   void deleteDoctorWithId(int id) {
 
         String query = "delete from t_doctors where doctor_id = ?";
         setPrepareStatement(query);
@@ -324,13 +323,13 @@ public class SqlQueries extends Connectiondb {
            }else{
                System.out.println(id+" doctor not found");
 
-               new omer().doctorMenu();
+               new DoctorsMethods().doctorMenu();
            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-    public <T> void deletePatientWithId(int id) {
+    public   void deletePatientWithId(int id) {
         String query = "delete from t_patients where patient_id = ?";
         setPrepareStatement(query);
 
@@ -342,7 +341,7 @@ public class SqlQueries extends Connectiondb {
             }else{
                 System.out.println(" patient with an ID of "+ id +" could not be found");
 
-                new musab().patientDischarged();
+                new PatientsMethods().patientDischarged();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

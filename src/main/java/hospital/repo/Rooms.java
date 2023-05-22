@@ -1,11 +1,11 @@
-package hospital.Methods;
+package hospital.repo;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Rooms {
 
-    static int firstFloorNumberRoom=100;
+    public static int firstFloorNumberRoom=100;
     static int secondFloorNumberRoom=200;
     static int thirdFloorNumberRoom=300;
     static int fourthFloorNumberRoom=400;
@@ -16,7 +16,7 @@ public class Rooms {
     static int ninthFloorNumberRoom=900;
     static int tenthFloorNumberRoom=1000;
 
-    static List<Patient> firstFloorRooms = new ArrayList<>();
+    public static List<Patient> firstFloorRooms = new ArrayList<>();
     static List<Patient> secondFloorRoooms = new ArrayList<>();
     static List<Patient> thirdFloorRooms = new ArrayList<>();
     static List<Patient> fourthFloorRooms = new ArrayList<>();

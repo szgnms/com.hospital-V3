@@ -1,7 +1,7 @@
-package hospital;
+package hospital.diseases;
 
-import hospital.Clinics.*;
-import hospital.Methods.Floors;
+import hospital.clinics.*;
+import hospital.repo.Floors;
 
 public enum Diseases {
     RHINOPLASTY(new AestheticsPlasticSurgery().clinicName(), Floors.FLOOR_1),
@@ -62,7 +62,7 @@ public enum Diseases {
     CONGESTIVE_HEART_FAILURE(new Cardiology().clinicName(),Floors.FLOOR_10),
     HYPERTENSION_HIGH_BLOOD_PRESSURE(new Cardiology().clinicName(),Floors.FLOOR_10);
 
-    private static String AestheticsPlasticSurgery;
+
     private final String clinicName;
     private final String floor;
 

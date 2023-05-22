@@ -1,24 +1,28 @@
-package hospital.Methods;
+package hospital.methods;
 
 
+import hospital.repo.ListDiseases;
+import hospital.repo.Patient;
+import hospital.repo.Rooms;
+import hospital.repo.WorngInput;
 import hospital.dbConnect.Connectiondb;
 import hospital.dbConnect.SqlQueries;
 
 import java.sql.SQLException;
 import java.util.concurrent.TimeUnit;
 
-import static hospital.Methods.color.*;
-import static hospital.Methods.szgn.*;
+import static hospital.repo.Color.*;
+import static hospital.methods.MainMenuMethods.*;
 
 import java.sql.*;
 
 
-public class musab extends Connectiondb implements WorngInput {
+public class PatientsMethods extends Connectiondb implements WorngInput {
 
 
     String patientName;
     String patientSurname;
-    static String patientDisease;
+    public static String patientDisease;
     int patientIdSearch;
 
 
@@ -34,14 +38,14 @@ public class musab extends Connectiondb implements WorngInput {
                 5-All Discharged Patients
                 6-Main Menu""");
         System.out.print("Your Selection : ");
-        szgn.menuSecim = scan.next();
+        MainMenuMethods.menuSecim = scan.next();
         switch (menuSecim) {
             case "1" -> patientRegistiration();
             case "2" -> patientSearch();
             case "3" -> patientDischarge();
             case "4" -> allPatients();
             case "5" -> allDischargedPatients();
-            case "6" -> new szgn().hospitalRun();
+            case "6" -> new MainMenuMethods().hospitalRun();
             default -> wrongMethod();
         }
     }
@@ -70,6 +74,8 @@ public class musab extends Connectiondb implements WorngInput {
         new ListDiseases().selectDisease();
 
         new SqlQueries().addPatient(patientId, patientName, patientSurname, patientDisease);
+
+
 
         Patient newPatient = new Patient(patientId, patientName, patientSurname, patientDisease, Rooms.firstFloorNumberRoom);
         Rooms.firstFloorRooms.add(newPatient);
@@ -101,7 +107,7 @@ public class musab extends Connectiondb implements WorngInput {
                 """);
 
         System.out.print("YOUR SELECTION : ");
-        szgn.menuSecim=szgn.scan.next();
+        MainMenuMethods.menuSecim= MainMenuMethods.scan.next();
 
         switch (menuSecim) {
             case "1" -> patientIdSearch();
@@ -109,7 +115,7 @@ public class musab extends Connectiondb implements WorngInput {
             case "3" -> patientSurnameSearch();
             case "4" -> patientDiseaseSearch();
             case "5" -> allPatients();
-            case "6" -> new szgn().hospitalRun();
+            case "6" -> new MainMenuMethods().hospitalRun();
             default -> wrongMethod();
 
 

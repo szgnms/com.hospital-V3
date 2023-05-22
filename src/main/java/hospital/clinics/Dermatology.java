@@ -1,6 +1,4 @@
-package hospital.Clinics;
-
-import hospital.ClinicsInterface;
+package hospital.clinics;
 
 public class Dermatology implements ClinicsInterface <String,String> {
 

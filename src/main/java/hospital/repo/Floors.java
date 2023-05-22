@@ -1,4 +1,4 @@
-package hospital.Methods;
+package hospital.repo;
 
 public enum Floors {
 

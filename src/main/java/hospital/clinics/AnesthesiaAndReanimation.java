@@ -1,6 +1,4 @@
-package hospital.Clinics;
-
-import hospital.ClinicsInterface;
+package hospital.clinics;
 
 public class AnesthesiaAndReanimation implements ClinicsInterface <String,String>{
 
