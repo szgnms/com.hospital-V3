@@ -3,7 +3,7 @@ package hospital.Methods;
 import hospital.dbConnect.SqlQueries;
 
 
-import java.sql.SQLException;
+
 import java.util.concurrent.TimeUnit;
 
 import static hospital.Methods.szgn.*;
@@ -16,14 +16,14 @@ public class omer implements WorngInput{
     private String doctorBranch;
     int doctorIdSearch;
 
-    void doctorMenu() {
+    public void doctorMenu() {
         System.out.println(GREEN+"================"+CYAN+"DOCTOR MENU"+GREEN+"================\n"+RED+"Please select ->");
         System.out.println(BLUE+"1-"+WHITE+"DOCTOR REGISTRATION");
         System.out.println(BLUE+"2-"+WHITE+"DELETE DOCTOR");
         System.out.println(BLUE+"3-"+WHITE+"DOCTOR SEARCH");
         System.out.println(BLUE+"4-"+WHITE+"ALL DOCTORS");
         System.out.println(BLUE+"5-"+WHITE+"RETURN TO MAIN MENU");
-        System.out.println(BLUE+"6-"+WHITE+"EXIT");
+
         System.out.print("YOUR SELECTION : ");
 
         szgn.menuSecim=szgn.scan.next();
@@ -34,7 +34,6 @@ public class omer implements WorngInput{
             case "3" ->doctorSearch();
             case "4" ->allDoctors();
             case "5" ->new szgn().hospitalRun();
-            case "6" ->System.exit(0);
             default ->wrongMethod();
         }
 
@@ -49,22 +48,23 @@ public class omer implements WorngInput{
         doctorSurname= scan.next();
         System.out.println("Please enter the Branch of the Doctor");
         doctorBranch=scan.next();
-
-        new SqlQueries().addDoctor(doctorId,doctorName,doctorSurname,doctorBranch);
         doctorId++;
+        new SqlQueries().addDoctor(doctorId,doctorName,doctorSurname,doctorBranch);
+
         doctorMenu();
     }
 
 
     public void deleteDoctor() {
-        System.out.println("Please enter the Name of the Doctor");
-        String doctorName=scan.next();
-        new SqlQueries().deleteDoctorWithName(doctorName);
+        new SqlQueries().printDoctorValues("t_doctors");
+        System.out.println("Please enter the Id of the Doctor");
+        int doctorId =scan.nextInt();
+        new SqlQueries().deleteDoctorWithId(doctorId);
         doctorMenu();
     }
 
     private void doctorSearch() {
-        new SqlQueries().printPatientValues("t_doctors");
+        new SqlQueries().printDoctorValues("t_doctors");
         System.out.println("Please select the type of search you want to make");
         System.out.println("""
                 1-Search by Doctor Id
@@ -74,6 +74,8 @@ public class omer implements WorngInput{
                 5-Search with All Parameters
                 6-Main Menu
                 """);
+        System.out.print("YOUR SELECTION : ");
+        menuSecim=scan.next();
 
         switch (menuSecim){
             case "1" -> doctorIdSearch();
@@ -95,25 +97,28 @@ public class omer implements WorngInput{
     private void doctorIdSearch(){
         System.out.println("please enter doctor id");
         doctorIdSearch=scan.nextInt();
-        new SqlQueries().printDoctorWithValue("t_doctors","doctor_id",doctorIdSearch);
-
+        new SqlQueries().printDoctorWithId(doctorIdSearch);
+        doctorMenu();
     }
     private void doctorNameSearch(){
         System.out.println("please enter doctor name");
         doctorName=scan.next();
-        new SqlQueries().printPatientWithValue("t_doctors","name",doctorName);
+        new SqlQueries().printDoctorWithValue("t_doctors","name",doctorName);
+        doctorMenu();
     }
 
     private void doctorSurnameSearch(){
         System.out.println("please enter doctor Surname");
         doctorSurname=scan.next();
-        new SqlQueries().printPatientWithValue("t_patients","surname",doctorSurname);
+        new SqlQueries().printDoctorWithValue("t_doctors","surname",doctorSurname);
+        doctorMenu();
     }
 
     private void doctorBranchSearch(){
-        System.out.println("please enter patient disease");
+        System.out.println("please enter doctor branch");
         doctorBranch=scan.next();
-        new SqlQueries().printPatientWithValue("t_patients","disease",doctorBranch);
+        new SqlQueries().printDoctorWithValue("t_doctors","branch",doctorBranch);
+        doctorMenu();
     }
 
 
