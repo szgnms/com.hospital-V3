@@ -9,15 +9,20 @@ import java.util.concurrent.TimeUnit;
 
 import static hospital.Methods.color.*;
 import static hospital.Methods.szgn.*;
+import java.sql.*;
 
 
-public class musab extends Connectiondb {
+ 
+public class musab extends Connectiondb implements WorngInput {
+ 
 
     String patientName;
     String patientSurname;
     String patientDisease;
     int patientIdSearch;
-
+ 
+    private PreparedStatement prst1;
+ 
     void patientMenu() {
         System.out.println(GREEN + "=================" + BLUE + "PATIENT MENU" + GREEN + "=================");
         System.out.println("""
@@ -26,9 +31,8 @@ public class musab extends Connectiondb {
                 2-Patient Search
                 3-Patient Discharged
                 4-All Patients
-                5-Main Menu
-                                
-                """);
+                5-Main Menu\n""");
+        System.out.print("Your Selection : ");
         szgn.menuSecim = scan.next();
         switch (menuSecim) {
             case "1" -> patientRegistiration();
@@ -36,12 +40,14 @@ public class musab extends Connectiondb {
             case "3" -> patientDischarged();
             case "4" -> allPatients();
             case "5" -> new szgn().hospitalRun();
-            default -> wrongInputMethod();
+            default -> wrongMethod();
         }
     }
 
 
     private void patientRegistiration() {
+
+
         System.out.println("Please enter the Name of the Patient");
         patientName = scan.next();
         System.out.println("Please enter the Surname of the Patient");
@@ -49,8 +55,25 @@ public class musab extends Connectiondb {
         System.out.println("Please enter the Disease of the Patient");
         patientDisease = scan.next();
 
-        new SqlQueries().addPatient(patientId, patientName, patientSurname, patientDisease);
+ 
+
+
+        new SqlQueries().addPatient(patientId,patientName,patientSurname,patientDisease);
+
+        Patient newPatient = new Patient(patientId,patientName,patientSurname,patientDisease,Rooms.firstFloorNumberRoom);
+        Rooms.firstFloorRooms.add(newPatient);
+
+ 
         patientId++;
+        Rooms.firstFloorNumberRoom++;
+
+        for(Patient w : Rooms.firstFloorRooms){
+            System.out.println(w);
+        }
+
+
+        patientMenu();
+
 
     }
 
@@ -72,8 +95,9 @@ public class musab extends Connectiondb {
             case "3" -> patientSurnameSearch();
             case "4" -> patientDiseaseSearch();
             case "5" -> allPatients();
-            case "6" -> patientMenu();
-            default -> wrongInputMethod();
+            case "6" -> new szgn().hospitalRun();
+                default -> wrongMethod();
+ 
 
         }
     }
@@ -106,67 +130,58 @@ public class musab extends Connectiondb {
 
     private void allPatients() {
         new SqlQueries().printPatientValues("t_patients");
+        patientMenu();
     }
 
+ 
+    public void settPrepareStatement(String sql) {
+        try {
+            this.prst1 = conn.prepareStatement(sql);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+  
+    public Patient patientDischarged() {
 
-    public void patientDischarged() {
-        int ptId = 0;
-        String ptName = "";
-        String ptSurname = "";
-        String ptDisease = "";
-        int ptDocId = 0;
+        Patient patient = null;
         System.out.println("please enter patient id");
-        patientIdSearch = scan.nextInt();
+        patientIdSearch=scan.nextInt();
+        String sql ="select * from t_patients where patient_id = ?";
+        settPrepareStatement(sql);
+
         try {
-            rs = st.executeQuery("select  id from patient where patient_id like " + patientIdSearch + " ");
-            while (rs.next()) {
-                ptId = rs.getInt(1);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            rs = st.executeQuery("select  name from patient where patient_id like " + patientIdSearch + " ");
-            while (rs.next()) {
-                ptName = rs.getString(1);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            rs = st.executeQuery("select  surname from patient where patient_id like " + patientIdSearch + " ");
-            while (rs.next()) {
-                ptSurname = rs.getString(1);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            rs = st.executeQuery("select  diseases from patient where patient_id like " + patientIdSearch + " ");
-            while (rs.next()) {
-                ptDisease = rs.getString(1);
+ 
+            prst1.setInt(1,patientIdSearch);
+            ResultSet resultSet = prst1.executeQuery();
+            if(resultSet.next()){
+                patient = new Patient();
+                patient.setId(resultSet.getInt("patient_id"));
+                patient.setName(resultSet.getString("name"));
+                patient.setSurname(resultSet.getString("surname"));
+                patient.setDisease(resultSet.getString("diseases"));
+
+            }else{
+                System.out.println("patient with an ID of "+ patientIdSearch +" could not be found");
+                patientDischarged();
+ 
+            
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
-        try {
-            rs = st.executeQuery("select  doctor_id from patient where patient_id like " + patientIdSearch + " ");
-            while (rs.next()) {
-                ptDocId = rs.getInt(1);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-
-        new SqlQueries().addDischargedPatient(ptId, ptName, ptSurname, ptDisease, ptDocId);
-        new SqlQueries().deletePersonWithValue("t_patients", "id", patientIdSearch);
+ 
+        System.out.println(patient+ " patient was discharged");
+        return patient;
     }
 
-    public void wrongInputMethod() {
-        System.out.println(RED + "PLEASE SELECT CORRECT \nREDIRECTING TO MENU");
-        for (int i = 0; i < 5; i++) {
+
+    @Override
+    public void wrongMethod() {
+        System.out.println(RED+"PLEASE SELECT CORRECT \nREDIRECTING TO MENU");
+        for (int i = 0; i <5 ; i++) {
+ 
+
+       
             System.out.print(". ");
             try {
                 TimeUnit.SECONDS.sleep(1);
@@ -175,9 +190,8 @@ public class musab extends Connectiondb {
             }
         }
         System.out.println();
-
         patientMenu();
-
     }
+
 
 }

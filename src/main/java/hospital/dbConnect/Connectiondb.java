@@ -6,9 +6,10 @@ public class Connectiondb {
     static String url= "jdbc:postgresql://localhost:5432/hospital_db";
     static String username="dev3";
     static String password= "123456Aa";
-    static java.sql.Connection conn  ;
+    protected static java.sql.Connection conn  ;
     protected static Statement st  ;
-     protected static ResultSet rs;
+    protected static ResultSet rs;
+
     static {
 
         try {

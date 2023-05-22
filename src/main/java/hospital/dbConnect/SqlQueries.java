@@ -1,8 +1,14 @@
 package hospital.dbConnect;
+import hospital.Methods.musab;
+import hospital.Methods.omer;
 
+import java.sql.*;
 import java.sql.SQLException;
 
+
 public class SqlQueries extends Connectiondb {
+
+    private PreparedStatement prst;
 
     public void createDoctorTable() {
         try {
@@ -23,7 +29,7 @@ public class SqlQueries extends Connectiondb {
                     "name VARCHAR(255) NOT NULL," +
                     "surname VARCHAR(255) NOT NULL," +
                     "diseases varchar(255) not null," +
-                    "doktor_id INTEGER");
+                    "doktor_id INTEGER)");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -211,9 +217,49 @@ public class SqlQueries extends Connectiondb {
         System.out.println("---------------------------------------------------------------------------");
 
     }
-    public <T> void deletePersonWithValue(String tableName, String columnName, T value) {
+
+    public void setPrepareStatement(String sql) {
         try {
-            rs = st.executeQuery("delete from " + tableName + " where " + columnName + " ilike '" + value + "' ");
+            this.prst = conn.prepareStatement(sql);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public <T> void deleteDoctorWithName(String name) {
+
+        String query = "delete from t_doctors where name = ?";
+        setPrepareStatement(query);
+
+        try {
+           prst.setString(1,name);
+           int deleted = prst.executeUpdate();
+           if (deleted>0){
+               System.out.println(name+ " doctor was deleted with success");
+           }else{
+               System.out.println(name+" doctor not found");
+
+               new omer().deleteDoctor();
+           }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public <T> void deletePatientWithId(int id) {
+        String query = "delete from t_patients where id = ?";
+        setPrepareStatement(query);
+
+        try {
+            prst.setInt(1,id);
+            int deleted = prst.executeUpdate();
+            if (deleted>0){
+                System.out.println(" patient with an id of"+ id +" was successfully deleted");
+            }else{
+                System.out.println(" patient with an ID of "+ id +" could not be found");
+
+                new musab().patientDischarged();
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
