@@ -1,6 +1,7 @@
 package hospital;
 
 
+import hospital.Methods.omer;
 import hospital.Methods.szgn;
 import hospital.dbConnect.SqlQueries;
 
@@ -12,5 +13,6 @@ public class Runner {
         new SqlQueries().createDoctorTable();
         new SqlQueries().createPatientTable();
       new szgn().hospitalRun();
+
     }
 }

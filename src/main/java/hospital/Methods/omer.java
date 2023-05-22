@@ -1,9 +1,11 @@
 package hospital.Methods;
 
+import hospital.Clinics.*;
 import hospital.dbConnect.SqlQueries;
 
 
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static hospital.Methods.szgn.*;
@@ -11,10 +13,34 @@ import static hospital.Methods.color.*;
 
 public class omer implements WorngInput{
 
+
     private static String doctorName;
     private String doctorSurname;
     private String doctorBranch;
     int doctorIdSearch;
+
+    List<String> branchList = new ArrayList<>();
+    public void printbranchList(){
+
+        System.out.println("==========DOCTOR BRANCH===============");
+        branchList.add(new AestheticsPlasticSurgery().clinicDoctor());
+        branchList.add(new AnesthesiaAndReanimation().clinicDoctor());
+        branchList.add(new Cardiology().clinicDoctor());
+        branchList.add(new Dermatology().clinicDoctor());
+        branchList.add(new EmergencyAndAmbulances().clinicDoctor());
+        branchList.add(new EndocrinologyAndMetabolicDiseases().clinicDoctor());
+        branchList.add(new EyeDiseases().clinicDoctor());
+        branchList.add(new InternalMedicine().clinicDoctor());
+        branchList.add(new NutritionAndDiet().clinicDoctor());
+        branchList.add(new OralAndDentalDiseases().clinicDoctor());
+
+        for(int i=1; i<=branchList.size();i++){
+            System.out.println(i +  " - " + branchList.get(i-1));
+        }
+        System.out.println();
+    }
+
+
 
     public void doctorMenu() {
         System.out.println(GREEN+"================"+CYAN+"DOCTOR MENU"+GREEN+"================\n"+RED+"Please select ->");
@@ -46,9 +72,24 @@ public class omer implements WorngInput{
         doctorName= scan.next();
         System.out.println("Please enter the Name of the Doctor");
         doctorSurname= scan.next();
-        System.out.println("Please enter the Branch of the Doctor");
-        doctorBranch=scan.next();
+        printbranchList();
+        System.out.println("Please select the Branch of the Doctor");
+        menuSecim=scan.next();
         doctorId++;
+        switch (menuSecim){
+            case "1"-> doctorBranch = branchList.get(0);
+            case "2"-> doctorBranch = branchList.get(1);
+            case "3"-> doctorBranch = branchList.get(2);
+            case "4"-> doctorBranch = branchList.get(3);
+            case "5"-> doctorBranch = branchList.get(4);
+            case "6"-> doctorBranch = branchList.get(5);
+            case "7"-> doctorBranch = branchList.get(6);
+            case "8"-> doctorBranch = branchList.get(7);
+            case "9"-> doctorBranch = branchList.get(8);
+            case "10"->doctorBranch = branchList.get(9);
+        }
+
+
         new SqlQueries().addDoctor(doctorId,doctorName,doctorSurname,doctorBranch);
 
         doctorMenu();
@@ -115,6 +156,7 @@ public class omer implements WorngInput{
     }
 
     private void doctorBranchSearch(){
+        printbranchList();
         System.out.println("please enter doctor branch");
         doctorBranch=scan.next();
         new SqlQueries().printDoctorWithValue("t_doctors","branch",doctorBranch);
@@ -137,5 +179,8 @@ public class omer implements WorngInput{
         doctorMenu();
 
     }
+
+
+
 
 }
