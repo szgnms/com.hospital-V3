@@ -4,12 +4,14 @@ import hospital.Clinics.*;
 import hospital.dbConnect.SqlQueries;
 
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static hospital.Methods.szgn.*;
 import static hospital.Methods.color.*;
+import static hospital.dbConnect.Connectiondb.*;
 
 public class omer implements WorngInput{
 
@@ -68,6 +70,16 @@ public class omer implements WorngInput{
 
 
     private void createDoctor() {
+        try {
+            rs=st.executeQuery("select max(doctor_id) from t_doctors ");
+            while (rs.next()) {
+                doctorId=rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        doctorId++;
+
         System.out.println("Please enter the Name of the Doctor");
         doctorName= scan.next();
         System.out.println("Please enter the Name of the Doctor");
@@ -75,7 +87,7 @@ public class omer implements WorngInput{
         printbranchList();
         System.out.println("Please select the Branch of the Doctor");
         menuSecim=scan.next();
-        doctorId++;
+
         switch (menuSecim){
             case "1"-> doctorBranch = branchList.get(0);
             case "2"-> doctorBranch = branchList.get(1);
