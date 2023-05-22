@@ -53,8 +53,15 @@ public class musab extends Connectiondb implements WorngInput {
 
 
     private void patientRegistiration() {
-
-
+        try {
+            rs=st.executeQuery("select max(patient_id) from t_patients ");
+            while (rs.next()) {
+                patientId=rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+           patientId++;
         System.out.println("Please enter the Name of the Patient");
         patientName = scan.next();
         System.out.println("Please enter the Surname of the Patient");
