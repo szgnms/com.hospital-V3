@@ -1,5 +1,10 @@
 package hospital.Methods;
 
+import hospital.Diseases;
+
+import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -7,6 +12,10 @@ import static hospital.Methods.color.*;
 
 
 public class szgn implements WorngInput {
+
+
+
+
     static Scanner scan = new Scanner(System.in);
     static String menuSecim;
     static int count = 0;
@@ -17,7 +26,7 @@ public class szgn implements WorngInput {
 
     public void hospitalRun() {
         System.out.println(GREEN + "=================" + CYAN + " WELCOME TO DEV3 HOSPITAL" + GREEN + "=================");
-        System.out.println(GREEN + "========================" + CYAN + " MAIN MENU" + GREEN + "=========================\n"+RED+"Please select ->");
+        System.out.println(GREEN + "========================" + CYAN + " MAIN MENU" + GREEN + "=========================\n" + RED + "Please select ->");
         System.out.println(GREEN + """
                 1- DOCTOR MENU
                 2- PATIENT MENU
@@ -47,8 +56,8 @@ public class szgn implements WorngInput {
             }
         }
         System.out.println();
- 
+
         hospitalRun();
- 
+
     }
 }
