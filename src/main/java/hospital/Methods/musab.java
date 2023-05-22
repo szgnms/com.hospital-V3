@@ -12,15 +12,17 @@ import static hospital.Methods.szgn.*;
 import java.sql.*;
 
 
+ 
 public class musab extends Connectiondb implements WorngInput {
+ 
 
     String patientName;
     String patientSurname;
     String patientDisease;
     int patientIdSearch;
-
+ 
     private PreparedStatement prst1;
-
+ 
     void patientMenu() {
         System.out.println(GREEN + "=================" + BLUE + "PATIENT MENU" + GREEN + "=================");
         System.out.println("""
@@ -43,7 +45,6 @@ public class musab extends Connectiondb implements WorngInput {
     }
 
 
-
     private void patientRegistiration() {
 
 
@@ -54,6 +55,7 @@ public class musab extends Connectiondb implements WorngInput {
         System.out.println("Please enter the Disease of the Patient");
         patientDisease = scan.next();
 
+ 
 
 
         new SqlQueries().addPatient(patientId,patientName,patientSurname,patientDisease);
@@ -61,6 +63,7 @@ public class musab extends Connectiondb implements WorngInput {
         Patient newPatient = new Patient(patientId,patientName,patientSurname,patientDisease,Rooms.firstFloorNumberRoom);
         Rooms.firstFloorRooms.add(newPatient);
 
+ 
         patientId++;
         Rooms.firstFloorNumberRoom++;
 
@@ -86,7 +89,7 @@ public class musab extends Connectiondb implements WorngInput {
                 6-Main Menu
                 """);
 
-        switch (menuSecim){
+        switch (menuSecim) {
             case "1" -> patientIdSearch();
             case "2" -> patientNameSearch();
             case "3" -> patientSurnameSearch();
@@ -94,34 +97,35 @@ public class musab extends Connectiondb implements WorngInput {
             case "5" -> allPatients();
             case "6" -> new szgn().hospitalRun();
                 default -> wrongMethod();
+ 
 
         }
     }
 
-    private void patientIdSearch(){
+    private void patientIdSearch() {
         System.out.println("please enter patient id");
-        patientIdSearch=scan.nextInt();
-        new SqlQueries().printPatientWithValue("t_patients","patient_id",patientIdSearch);
+        patientIdSearch = scan.nextInt();
+        new SqlQueries().printPatientWithValue("t_patients", "patient_id", patientIdSearch);
 
     }
 
-    private void patientNameSearch(){
+    private void patientNameSearch() {
         System.out.println("please enter patient name");
-        patientName=scan.next();
-        new SqlQueries().printPatientWithValue("t_patients","name",patientName);
+        patientName = scan.next();
+        new SqlQueries().printPatientWithValue("t_patients", "name", patientName);
     }
 
-    private void patientSurnameSearch(){
+    private void patientSurnameSearch() {
         System.out.println("please enter patient Surname");
-        patientSurname=scan.next();
-        new SqlQueries().printPatientWithValue("t_patients","surname",patientSurname);
+        patientSurname = scan.next();
+        new SqlQueries().printPatientWithValue("t_patients", "surname", patientSurname);
     }
 
 
-    private void patientDiseaseSearch(){
+    private void patientDiseaseSearch() {
         System.out.println("please enter patient disease");
-        patientDisease=scan.next();
-        new SqlQueries().printPatientWithValue("t_patients","disease",patientDisease);
+        patientDisease = scan.next();
+        new SqlQueries().printPatientWithValue("t_patients", "disease", patientDisease);
     }
 
     private void allPatients() {
@@ -129,13 +133,13 @@ public class musab extends Connectiondb implements WorngInput {
         patientMenu();
     }
 
+ 
     public void settPrepareStatement(String sql) {
         try {
             this.prst1 = conn.prepareStatement(sql);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        }
-    }
+  
     public Patient patientDischarged() {
 
         Patient patient = null;
@@ -145,6 +149,7 @@ public class musab extends Connectiondb implements WorngInput {
         settPrepareStatement(sql);
 
         try {
+ 
             prst1.setInt(1,patientIdSearch);
             ResultSet resultSet = prst1.executeQuery();
             if(resultSet.next()){
@@ -157,11 +162,14 @@ public class musab extends Connectiondb implements WorngInput {
             }else{
                 System.out.println("patient with an ID of "+ patientIdSearch +" could not be found");
                 patientDischarged();
+ 
+            
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
+ 
         System.out.println(patient+ " patient was discharged");
         return patient;
     }
@@ -171,6 +179,9 @@ public class musab extends Connectiondb implements WorngInput {
     public void wrongMethod() {
         System.out.println(RED+"PLEASE SELECT CORRECT \nREDIRECTING TO MENU");
         for (int i = 0; i <5 ; i++) {
+ 
+
+       
             System.out.print(". ");
             try {
                 TimeUnit.SECONDS.sleep(1);

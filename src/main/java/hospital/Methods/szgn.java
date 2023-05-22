@@ -47,6 +47,8 @@ public class szgn implements WorngInput {
             }
         }
         System.out.println();
+ 
         hospitalRun();
+ 
     }
 }
