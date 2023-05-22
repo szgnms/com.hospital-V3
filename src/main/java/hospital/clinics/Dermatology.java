@@ -10,6 +10,6 @@ public class Dermatology implements ClinicsInterface <String,String> {
 
     @Override
     public String clinicDoctor() {
-        return "Dermatology_Specialist" ;
+        return "Dermatology Specialist" ;
     }
 }

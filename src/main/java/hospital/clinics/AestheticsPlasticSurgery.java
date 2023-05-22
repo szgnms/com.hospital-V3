@@ -9,7 +9,7 @@ public class AestheticsPlasticSurgery implements ClinicsInterface<String,String>
 
     @Override
     public String clinicDoctor() {
-        return "AestheticsPlasticSurgerySpecialist";
+        return "Aesthetics Plastic Surgery Specialist";
     }
 
 }

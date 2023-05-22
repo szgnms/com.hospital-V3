@@ -10,6 +10,6 @@ public class EndocrinologyAndMetabolicDiseases implements ClinicsInterface<Strin
 
     @Override
     public String clinicDoctor() {
-        return "Endocrinology_and_Metabolic_Diseases_Specialist";
+        return "Endocrinology And Metabolic Diseases Specialist";
     }
 }

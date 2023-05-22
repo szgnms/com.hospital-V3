@@ -8,6 +8,6 @@ public class EmergencyAndAmbulances implements ClinicsInterface<String,String> {
 
     @Override
     public String clinicDoctor() {
-        return "EmergencyAndAmbulancesSpecialist";
+        return "Emergency AndAmbulances Specialist";
     }
 }

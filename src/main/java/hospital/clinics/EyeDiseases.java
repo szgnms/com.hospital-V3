@@ -8,6 +8,6 @@ public class EyeDiseases implements ClinicsInterface<String,String> {
 
     @Override
     public String clinicDoctor() {
-        return "Eye_Specialist";
+        return "Eye Specialist";
     }
 }
