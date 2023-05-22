@@ -1,5 +1,5 @@
 package hospital.repo;
 
-public interface WorngInput {
+public interface WrongInput {
   void wrongMethod();
 }

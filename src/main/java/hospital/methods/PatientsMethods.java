@@ -4,7 +4,7 @@ package hospital.methods;
 import hospital.repo.ListDiseases;
 import hospital.repo.Patient;
 import hospital.repo.Rooms;
-import hospital.repo.WorngInput;
+import hospital.repo.WrongInput;
 import hospital.dbConnect.Connectiondb;
 import hospital.dbConnect.SqlQueries;
 
@@ -17,7 +17,7 @@ import static hospital.methods.MainMenuMethods.*;
 import java.sql.*;
 
 
-public class PatientsMethods extends Connectiondb implements WorngInput {
+public class PatientsMethods extends Connectiondb implements WrongInput {
 
 
     String patientName;

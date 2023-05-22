@@ -1,7 +1,7 @@
 package hospital.methods;
 
 import hospital.clinics.*;
-import hospital.repo.WorngInput;
+import hospital.repo.WrongInput;
 import hospital.dbConnect.SqlQueries;
 
 
@@ -14,7 +14,7 @@ import static hospital.methods.MainMenuMethods.*;
 import static hospital.repo.Color.*;
 import static hospital.dbConnect.Connectiondb.*;
 
-public class DoctorsMethods implements WorngInput {
+public class DoctorsMethods implements WrongInput {
 
 
     private static String doctorName;

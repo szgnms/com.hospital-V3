@@ -92,7 +92,7 @@ public class SqlQueries extends Connectiondb {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("-----------------------------------------------------------");
+        System.out.println("------------------------------------------------------------------------------------");
 
         try {
             System.out.printf("%-15s %-15.15s %-15.15s  %-4s \n",
@@ -104,7 +104,7 @@ public class SqlQueries extends Connectiondb {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("-----------------------------------------------------------");
+        System.out.println("------------------------------------------------------------------------------------");
         try {
             while (rs.next()) {
                 System.out.printf("%-15s %-15.15s %-15.15s %-4s \n",
@@ -118,7 +118,7 @@ public class SqlQueries extends Connectiondb {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("-----------------------------------------------------------");
+        System.out.println("------------------------------------------------------------------------------------");
     }
 
     public void printPatientValues(String table) {
@@ -127,10 +127,10 @@ public class SqlQueries extends Connectiondb {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("---------------------------------------------------------------------------");
+        System.out.println("-----------------------------------------------------------------------------------------------");
 
         try {
-            System.out.printf("%-15s %-15.15s %-15.15s %-15s %-4s \n",
+            System.out.printf("%-15s %-15.15s %-15.15s %-35.35s %-4s \n",
                     rs.getMetaData().getColumnName(1),
                     rs.getMetaData().getColumnName(2),
                     rs.getMetaData().getColumnName(3),
@@ -139,10 +139,10 @@ public class SqlQueries extends Connectiondb {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("---------------------------------------------------------------------------");
+        System.out.println("-----------------------------------------------------------------------------------------------");
         try {
             while (rs.next()) {
-                System.out.printf("%-15s %-15.15s %-15.15s %-15s %-4s \n",
+                System.out.printf("%-15s %-15.15s %-15.15s %-35.35s %-4s \n",
                         rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
@@ -153,7 +153,7 @@ public class SqlQueries extends Connectiondb {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("---------------------------------------------------------------------------");
+        System.out.println("-----------------------------------------------------------------------------------------------");
     }
 
 

@@ -1,6 +1,6 @@
 package hospital.methods;
 
-import hospital.repo.WorngInput;
+import hospital.repo.WrongInput;
 
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 import static hospital.repo.Color.*;
 
 
-public class MainMenuMethods implements WorngInput {
+public class MainMenuMethods implements WrongInput {
 
 
 
