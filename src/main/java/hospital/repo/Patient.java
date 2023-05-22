@@ -1,4 +1,4 @@
-package hospital.Methods;
+package hospital.repo;
 
 public class Patient {
     private int id;

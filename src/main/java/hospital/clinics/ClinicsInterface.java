@@ -1,6 +1,4 @@
-package hospital;
-
-import java.io.Serializable;
+package hospital.clinics;
 
 public interface ClinicsInterface <T,U>  {
 

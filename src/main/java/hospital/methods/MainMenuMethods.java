@@ -1,24 +1,20 @@
-package hospital.Methods;
+package hospital.methods;
 
-import hospital.Diseases;
+import hospital.repo.WorngInput;
 
-import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-import static hospital.Methods.color.*;
+import static hospital.repo.Color.*;
 
 
-public class szgn implements WorngInput {
+public class MainMenuMethods implements WorngInput {
 
 
 
 
-    static Scanner scan = new Scanner(System.in);
-    static String menuSecim;
-    static int count = 0;
+    public static Scanner scan = new Scanner(System.in);
+    public static String menuSecim;
 
     static int doctorId = 1000;
     static int patientId = 2000;
@@ -35,8 +31,8 @@ public class szgn implements WorngInput {
         System.out.print("YOUR SELECTION : ");
         menuSecim = scan.next();
         switch (menuSecim) {
-            case "1" -> new omer().doctorMenu();
-            case "2" -> new musab().patientMenu();
+            case "1" -> new DoctorsMethods().doctorMenu();
+            case "2" -> new PatientsMethods().patientMenu();
             case "3" -> System.exit(0);
             default -> wrongMethod();
         }

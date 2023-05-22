@@ -1,6 +1,4 @@
-package hospital.Clinics;
-
-import hospital.ClinicsInterface;
+package hospital.clinics;
 
 public class NutritionAndDiet implements ClinicsInterface<String,String> {
     @Override

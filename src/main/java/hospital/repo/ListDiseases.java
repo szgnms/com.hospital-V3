@@ -1,14 +1,16 @@
-package hospital.Methods;
+package hospital.repo;
 
-import hospital.Diseases;
+import hospital.diseases.Diseases;
+import hospital.methods.MainMenuMethods;
+import hospital.methods.PatientsMethods;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static hospital.Methods.color.BLUE;
-import static hospital.Methods.color.WHITE;
-import static hospital.Methods.szgn.menuSecim;
-import static hospital.Methods.szgn.scan;
+import static hospital.repo.Color.*;
+
+import static hospital.methods.MainMenuMethods.menuSecim;
+import static hospital.methods.MainMenuMethods.scan;
 
 public class ListDiseases {
     List<Diseases> aestheticsPlasticSurgeryList = new ArrayList<>();
@@ -122,7 +124,7 @@ public class ListDiseases {
         diseasesList();
         printCliniclist();
         System.out.println("Select Clinic");
-        szgn.menuSecim=scan.next();
+        MainMenuMethods.menuSecim=scan.next();
         switch (menuSecim){
             case "1" -> {
                 for (Diseases  w: aestheticsPlasticSurgeryList){
@@ -132,11 +134,11 @@ public class ListDiseases {
                 System.out.println("Select Disease");
                 menuSecim=scan.next();
                 switch (menuSecim){
-                   case "1" -> musab.patientDisease =aestheticsPlasticSurgeryList.get(0).toString();
-                   case "2" -> musab.patientDisease =aestheticsPlasticSurgeryList.get(1).toString();
-                   case "3" -> musab.patientDisease =aestheticsPlasticSurgeryList.get(2).toString();
-                   case "4" -> musab.patientDisease =aestheticsPlasticSurgeryList.get(3).toString();
-                   case "5" -> musab.patientDisease =aestheticsPlasticSurgeryList.get(4).toString();
+                   case "1" -> PatientsMethods.patientDisease =aestheticsPlasticSurgeryList.get(0).toString();
+                   case "2" -> PatientsMethods.patientDisease =aestheticsPlasticSurgeryList.get(1).toString();
+                   case "3" -> PatientsMethods.patientDisease =aestheticsPlasticSurgeryList.get(2).toString();
+                   case "4" -> PatientsMethods.patientDisease =aestheticsPlasticSurgeryList.get(3).toString();
+                   case "5" -> PatientsMethods.patientDisease =aestheticsPlasticSurgeryList.get(4).toString();
                 }
 
             }
@@ -148,10 +150,10 @@ public class ListDiseases {
                 System.out.println("Select Disease");
                 menuSecim=scan.next();
                 switch (menuSecim){
-                    case "1" -> musab.patientDisease =anesthesiaAndReanimationList.get(0).toString();
-                    case "2" -> musab.patientDisease =anesthesiaAndReanimationList.get(1).toString();
-                    case "3" -> musab.patientDisease =anesthesiaAndReanimationList.get(2).toString();
-                    case "4" -> musab.patientDisease =anesthesiaAndReanimationList.get(3).toString();
+                    case "1" -> PatientsMethods.patientDisease =anesthesiaAndReanimationList.get(0).toString();
+                    case "2" -> PatientsMethods.patientDisease =anesthesiaAndReanimationList.get(1).toString();
+                    case "3" -> PatientsMethods.patientDisease =anesthesiaAndReanimationList.get(2).toString();
+                    case "4" -> PatientsMethods.patientDisease =anesthesiaAndReanimationList.get(3).toString();
 
                 }
 
@@ -164,11 +166,11 @@ public class ListDiseases {
                 System.out.println("Select Disease");
                 menuSecim=scan.next();
                 switch (menuSecim){
-                    case "1" -> musab.patientDisease =dermatologyList.get(0).toString();
-                    case "2" -> musab.patientDisease =dermatologyList.get(1).toString();
-                    case "3" -> musab.patientDisease =dermatologyList.get(2).toString();
-                    case "4" -> musab.patientDisease =dermatologyList.get(3).toString();
-                    case "5" -> musab.patientDisease =dermatologyList.get(4).toString();
+                    case "1" -> PatientsMethods.patientDisease =dermatologyList.get(0).toString();
+                    case "2" -> PatientsMethods.patientDisease =dermatologyList.get(1).toString();
+                    case "3" -> PatientsMethods.patientDisease =dermatologyList.get(2).toString();
+                    case "4" -> PatientsMethods.patientDisease =dermatologyList.get(3).toString();
+                    case "5" -> PatientsMethods.patientDisease =dermatologyList.get(4).toString();
                 }
             }
             case "4" -> {
@@ -179,11 +181,11 @@ public class ListDiseases {
                 System.out.println("Select Disease");
                 menuSecim=scan.next();
                 switch (menuSecim){
-                    case "1" -> musab.patientDisease =emergencyAndAmbulancesList.get(0).toString();
-                    case "2" -> musab.patientDisease =emergencyAndAmbulancesList.get(1).toString();
-                    case "3" -> musab.patientDisease =emergencyAndAmbulancesList.get(2).toString();
-                    case "4" -> musab.patientDisease =emergencyAndAmbulancesList.get(3).toString();
-                    case "5" -> musab.patientDisease =emergencyAndAmbulancesList.get(4).toString();
+                    case "1" -> PatientsMethods.patientDisease =emergencyAndAmbulancesList.get(0).toString();
+                    case "2" -> PatientsMethods.patientDisease =emergencyAndAmbulancesList.get(1).toString();
+                    case "3" -> PatientsMethods.patientDisease =emergencyAndAmbulancesList.get(2).toString();
+                    case "4" -> PatientsMethods.patientDisease =emergencyAndAmbulancesList.get(3).toString();
+                    case "5" -> PatientsMethods.patientDisease =emergencyAndAmbulancesList.get(4).toString();
                 }
 
             }
@@ -195,11 +197,11 @@ public class ListDiseases {
                 System.out.println("Select Disease");
                 menuSecim=scan.next();
                 switch (menuSecim){
-                    case "1" -> musab.patientDisease =endocrinologyAndMetabolicDiseasesList.get(0).toString();
-                    case "2" -> musab.patientDisease =endocrinologyAndMetabolicDiseasesList.get(1).toString();
-                    case "3" -> musab.patientDisease =endocrinologyAndMetabolicDiseasesList.get(2).toString();
-                    case "4" -> musab.patientDisease =endocrinologyAndMetabolicDiseasesList.get(3).toString();
-                    case "5" -> musab.patientDisease =endocrinologyAndMetabolicDiseasesList.get(4).toString();
+                    case "1" -> PatientsMethods.patientDisease =endocrinologyAndMetabolicDiseasesList.get(0).toString();
+                    case "2" -> PatientsMethods.patientDisease =endocrinologyAndMetabolicDiseasesList.get(1).toString();
+                    case "3" -> PatientsMethods.patientDisease =endocrinologyAndMetabolicDiseasesList.get(2).toString();
+                    case "4" -> PatientsMethods.patientDisease =endocrinologyAndMetabolicDiseasesList.get(3).toString();
+                    case "5" -> PatientsMethods.patientDisease =endocrinologyAndMetabolicDiseasesList.get(4).toString();
                 }
             }
             case "6" -> {
@@ -210,11 +212,11 @@ public class ListDiseases {
                 System.out.println("Select Disease");
                 menuSecim=scan.next();
                 switch (menuSecim){
-                    case "1" -> musab.patientDisease =eyeDiseasesList.get(0).toString();
-                    case "2" -> musab.patientDisease =eyeDiseasesList.get(1).toString();
-                    case "3" -> musab.patientDisease =eyeDiseasesList.get(2).toString();
-                    case "4" -> musab.patientDisease =eyeDiseasesList.get(3).toString();
-                    case "5" -> musab.patientDisease =eyeDiseasesList.get(4).toString();
+                    case "1" -> PatientsMethods.patientDisease =eyeDiseasesList.get(0).toString();
+                    case "2" -> PatientsMethods.patientDisease =eyeDiseasesList.get(1).toString();
+                    case "3" -> PatientsMethods.patientDisease =eyeDiseasesList.get(2).toString();
+                    case "4" -> PatientsMethods.patientDisease =eyeDiseasesList.get(3).toString();
+                    case "5" -> PatientsMethods.patientDisease =eyeDiseasesList.get(4).toString();
                 }
 
             }
@@ -226,10 +228,10 @@ public class ListDiseases {
                 System.out.println("Select Disease");
                 menuSecim=scan.next();
                 switch (menuSecim){
-                    case "1" -> musab.patientDisease =internalMedicineList.get(0).toString();
-                    case "2" -> musab.patientDisease =internalMedicineList.get(1).toString();
-                    case "3" -> musab.patientDisease =internalMedicineList.get(2).toString();
-                    case "4" -> musab.patientDisease =internalMedicineList.get(3).toString();
+                    case "1" -> PatientsMethods.patientDisease =internalMedicineList.get(0).toString();
+                    case "2" -> PatientsMethods.patientDisease =internalMedicineList.get(1).toString();
+                    case "3" -> PatientsMethods.patientDisease =internalMedicineList.get(2).toString();
+                    case "4" -> PatientsMethods.patientDisease =internalMedicineList.get(3).toString();
 
                 }
             }
@@ -242,10 +244,10 @@ public class ListDiseases {
                 System.out.println("Select Disease");
                 menuSecim=scan.next();
                 switch (menuSecim){
-                    case "1" -> musab.patientDisease =nutritionAndDietList.get(0).toString();
-                    case "2" -> musab.patientDisease =nutritionAndDietList.get(1).toString();
-                    case "3" -> musab.patientDisease =nutritionAndDietList.get(2).toString();
-                    case "4" -> musab.patientDisease =nutritionAndDietList.get(3).toString();
+                    case "1" -> PatientsMethods.patientDisease =nutritionAndDietList.get(0).toString();
+                    case "2" -> PatientsMethods.patientDisease =nutritionAndDietList.get(1).toString();
+                    case "3" -> PatientsMethods.patientDisease =nutritionAndDietList.get(2).toString();
+                    case "4" -> PatientsMethods.patientDisease =nutritionAndDietList.get(3).toString();
 
                 }
 
@@ -259,11 +261,11 @@ public class ListDiseases {
                 System.out.println("Select Disease");
                 menuSecim=scan.next();
                 switch (menuSecim){
-                    case "1" -> musab.patientDisease =oralAndDentalDiseasesList.get(0).toString();
-                    case "2" -> musab.patientDisease =oralAndDentalDiseasesList.get(1).toString();
-                    case "3" -> musab.patientDisease =oralAndDentalDiseasesList.get(2).toString();
-                    case "4" -> musab.patientDisease =oralAndDentalDiseasesList.get(3).toString();
-                    case "5" -> musab.patientDisease =oralAndDentalDiseasesList.get(4).toString();
+                    case "1" -> PatientsMethods.patientDisease =oralAndDentalDiseasesList.get(0).toString();
+                    case "2" -> PatientsMethods.patientDisease =oralAndDentalDiseasesList.get(1).toString();
+                    case "3" -> PatientsMethods.patientDisease =oralAndDentalDiseasesList.get(2).toString();
+                    case "4" -> PatientsMethods.patientDisease =oralAndDentalDiseasesList.get(3).toString();
+                    case "5" -> PatientsMethods.patientDisease =oralAndDentalDiseasesList.get(4).toString();
                 }
 
             }
@@ -275,10 +277,10 @@ public class ListDiseases {
                 System.out.println("Select Disease");
                 menuSecim=scan.next();
                 switch (menuSecim){
-                    case "1" -> musab.patientDisease =cardiologyList.get(0).toString();
-                    case "2" -> musab.patientDisease =cardiologyList.get(1).toString();
-                    case "3" -> musab.patientDisease =cardiologyList.get(2).toString();
-                    case "4" -> musab.patientDisease =cardiologyList.get(3).toString();
+                    case "1" -> PatientsMethods.patientDisease =cardiologyList.get(0).toString();
+                    case "2" -> PatientsMethods.patientDisease =cardiologyList.get(1).toString();
+                    case "3" -> PatientsMethods.patientDisease =cardiologyList.get(2).toString();
+                    case "4" -> PatientsMethods.patientDisease =cardiologyList.get(3).toString();
 
                 }
 

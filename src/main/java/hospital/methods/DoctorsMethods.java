@@ -1,6 +1,7 @@
-package hospital.Methods;
+package hospital.methods;
 
-import hospital.Clinics.*;
+import hospital.clinics.*;
+import hospital.repo.WorngInput;
 import hospital.dbConnect.SqlQueries;
 
 
@@ -9,11 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static hospital.Methods.szgn.*;
-import static hospital.Methods.color.*;
+import static hospital.methods.MainMenuMethods.*;
+import static hospital.repo.Color.*;
 import static hospital.dbConnect.Connectiondb.*;
 
-public class omer implements WorngInput{
+public class DoctorsMethods implements WorngInput {
 
 
     private static String doctorName;
@@ -21,10 +22,9 @@ public class omer implements WorngInput{
     private String doctorBranch;
     int doctorIdSearch;
 
-    List<String> branchList = new ArrayList<>();
-    public void printbranchList(){
+   static List<String> branchList = new ArrayList<>();
 
-        System.out.println("==========DOCTOR BRANCH===============");
+    public void addBranch(){
         branchList.add(new AestheticsPlasticSurgery().clinicDoctor());
         branchList.add(new AnesthesiaAndReanimation().clinicDoctor());
         branchList.add(new Cardiology().clinicDoctor());
@@ -35,6 +35,9 @@ public class omer implements WorngInput{
         branchList.add(new InternalMedicine().clinicDoctor());
         branchList.add(new NutritionAndDiet().clinicDoctor());
         branchList.add(new OralAndDentalDiseases().clinicDoctor());
+    }
+    public void printbranchList(){
+        System.out.println("==========DOCTOR BRANCH===============");
 
         for(int i=1; i<=branchList.size();i++){
             System.out.println(i +  " - " + branchList.get(i-1));
@@ -54,14 +57,14 @@ public class omer implements WorngInput{
 
         System.out.print("YOUR SELECTION : ");
 
-        szgn.menuSecim=szgn.scan.next();
+        MainMenuMethods.menuSecim= MainMenuMethods.scan.next();
 
-        switch (szgn.menuSecim){
+        switch (MainMenuMethods.menuSecim){
             case "1" ->createDoctor();
             case "2" ->deleteDoctor();
             case "3" ->doctorSearch();
             case "4" ->allDoctors();
-            case "5" ->new szgn().hospitalRun();
+            case "5" ->new MainMenuMethods().hospitalRun();
             default ->wrongMethod();
         }
 
@@ -136,7 +139,7 @@ public class omer implements WorngInput{
             case "3" -> doctorSurnameSearch();
             case "4" -> doctorBranchSearch();
             case "5" -> allDoctors();
-            case "6" -> new szgn().hospitalRun();
+            case "6" -> new MainMenuMethods().hospitalRun();
             default -> wrongMethod();
 
         }
