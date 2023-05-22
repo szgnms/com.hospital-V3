@@ -8,6 +8,6 @@ public class NutritionAndDiet implements ClinicsInterface<String,String> {
 
     @Override
     public String clinicDoctor() {
-        return "NutritionAndDietSpecialist";
+        return "Nutrition And Diet Specialist";
     }
 }

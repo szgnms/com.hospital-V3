@@ -10,7 +10,7 @@ public class AnesthesiaAndReanimation implements ClinicsInterface <String,String
 
     @Override
     public String clinicDoctor() {
-        return "Anesthesia_Specialist";
+        return "Anesthesia Specialist";
     }
 
 
