@@ -9,6 +9,7 @@ import hospital.dbConnect.Connectiondb;
 import hospital.dbConnect.SqlQueries;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static hospital.repo.Color.*;
@@ -26,6 +27,7 @@ public class PatientsMethods extends Connectiondb implements WrongInput {
     int patientIdSearch;
 
    int  patientId=0;
+
 
 
 
@@ -87,18 +89,34 @@ public class PatientsMethods extends Connectiondb implements WrongInput {
 
         new SqlQueries().addPatient(patientId, patientName, patientSurname, patientDisease,drId);
 
+        int roomNumber=0;
+        int floorNumber = drId;
 
-        Patient newPatient = new Patient(patientId, patientName, patientSurname, patientDisease, Rooms.firstFloorNumberRoom);
-        Rooms.firstFloorRooms.add(newPatient);
 
+        switch (drId){
+            case 1 ->
+            {
+                roomNumber = Rooms.firstFloorNumberRoom++;
 
-        patientId++;
-        Rooms.firstFloorNumberRoom++;
+            }
 
-        for (Patient w : Rooms.firstFloorRooms) {
-            System.out.println(w);
+            case 2 -> roomNumber = Rooms.secondFloorNumberRoom++;
+            case 3 -> roomNumber = Rooms.thirdFloorNumberRoom++;
+            case 4 -> roomNumber = Rooms.fourthFloorNumberRoom++;
+            case 5 -> roomNumber = Rooms.fifthFloorNumberRoom++;
+            case 6 -> roomNumber = Rooms.sixthFloorNumberRoom++;
+            case 7 -> roomNumber = Rooms.seventhFloorNumberRoom++;
+            case 8 -> roomNumber = Rooms.eighthFloorNumberRoom++;
+            case 9 -> roomNumber = Rooms.ninthFloorNumberRoom++;
+            case 10 ->roomNumber = Rooms.tenthFloorNumberRoom++;
         }
 
+        Patient newPatient = new Patient(patientId, patientName, patientSurname, patientDisease, roomNumber);
+        patientId++;
+
+
+
+        System.out.println(newPatient);
 
         patientMenu();
 

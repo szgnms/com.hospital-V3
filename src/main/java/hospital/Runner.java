@@ -6,6 +6,7 @@ import hospital.diseases.DiseaseQuery;
 import hospital.methods.DoctorsMethods;
 import hospital.methods.MainMenuMethods;
 import hospital.dbConnect.SqlQueries;
+import hospital.repo.Rooms;
 
 public class Runner {
 
@@ -14,6 +15,7 @@ public class Runner {
         new SqlQueries().createDiseases();
         new SqlQueries().createBranch();
         new BranchQuery().branchQuery();
+        new Rooms().addFloor();
         new DiseaseQuery().diseaseQuery();
         new DoctorsMethods().addBranch();
         new SqlQueries().createDischargePatient();
