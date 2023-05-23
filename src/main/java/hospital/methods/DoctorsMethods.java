@@ -1,6 +1,8 @@
 package hospital.methods;
 
 import hospital.clinics.*;
+import hospital.dbConnect.Connectiondb;
+import hospital.diseases.Diseases;
 import hospital.repo.WrongInput;
 import hospital.dbConnect.SqlQueries;
 
@@ -35,6 +37,9 @@ public class DoctorsMethods implements WrongInput {
         branchList.add(new InternalMedicine().clinicDoctor());
         branchList.add(new NutritionAndDiet().clinicDoctor());
         branchList.add(new OralAndDentalDiseases().clinicDoctor());
+
+
+
     }
     public void printbranchList(){
         System.out.println("==========DOCTOR BRANCH===============");
