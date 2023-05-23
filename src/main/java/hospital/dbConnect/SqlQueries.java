@@ -7,6 +7,17 @@ import java.sql.SQLException;
 
 public class SqlQueries extends Connectiondb {
 
+    public void createBranch(){
+        try {
+            st.execute("create table if not exists t_branch("+
+                    "doctor_id integer not null," +
+                    "branch varchar(255) not null unique)");
+        } catch (SQLException e) {
+            System.out.println();;
+
+        }
+    }
+
     public void createDiseases(){
         try {
             st.execute("create table if not exists t_disease("+
@@ -23,7 +34,7 @@ public class SqlQueries extends Connectiondb {
     public void createDoctorTable() {
         try {
             st.execute("CREATE TABLE IF NOT EXISTS t_doctors(" +
-                    "doctor_id INTEGER PRIMARY KEY not null," +
+                    "doctor_id INTEGER not null," +
                     "name VARCHAR(255) NOT NULL," +
                     "surname VARCHAR(255) NOT NULL," +
                     "branch varchar(255) not null)");
