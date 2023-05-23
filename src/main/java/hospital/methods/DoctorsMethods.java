@@ -28,7 +28,6 @@ public class DoctorsMethods implements WrongInput {
     public void addBranch(){
         branchList.add(new AestheticsPlasticSurgery().clinicDoctor());
         branchList.add(new AnesthesiaAndReanimation().clinicDoctor());
-        branchList.add(new Cardiology().clinicDoctor());
         branchList.add(new Dermatology().clinicDoctor());
         branchList.add(new EmergencyAndAmbulances().clinicDoctor());
         branchList.add(new EndocrinologyAndMetabolicDiseases().clinicDoctor());
@@ -36,12 +35,14 @@ public class DoctorsMethods implements WrongInput {
         branchList.add(new InternalMedicine().clinicDoctor());
         branchList.add(new NutritionAndDiet().clinicDoctor());
         branchList.add(new OralAndDentalDiseases().clinicDoctor());
+        branchList.add(new Cardiology().clinicDoctor());
 
 
 
     }
     public void printbranchList(){
         System.out.println("==========DOCTOR BRANCH===============");
+
 
         for(int i=1; i<=branchList.size();i++){
             System.out.println(i +  " - " + branchList.get(i-1));
@@ -77,15 +78,8 @@ public class DoctorsMethods implements WrongInput {
 
 
     private void createDoctor() {
-        try {
-            rs=st.executeQuery("select max(doctor_id) from t_doctors ");
-            while (rs.next()) {
-                doctorId=rs.getInt(1);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        doctorId++;
+
+        int drId=0;
 
         System.out.println("Please enter the Name of the Doctor");
         doctorName= scan.next();
@@ -94,6 +88,8 @@ public class DoctorsMethods implements WrongInput {
         printbranchList();
         System.out.println("Please select the Branch of the Doctor");
         menuSecim=scan.next();
+
+        drId=Integer.parseInt(menuSecim);
 
         switch (menuSecim){
             case "1"-> doctorBranch = branchList.get(0);
@@ -109,7 +105,7 @@ public class DoctorsMethods implements WrongInput {
         }
 
 
-        new SqlQueries().addDoctor(doctorId,doctorName,doctorSurname,doctorBranch);
+        new SqlQueries().addDoctor(drId,doctorName,doctorSurname,doctorBranch);
 
         doctorMenu();
     }
