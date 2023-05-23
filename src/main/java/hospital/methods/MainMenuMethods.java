@@ -10,9 +10,6 @@ import static hospital.repo.Color.*;
 
 public class MainMenuMethods implements WrongInput {
 
-
-
-
     public static Scanner scan = new Scanner(System.in);
     public static String menuSecim;
 

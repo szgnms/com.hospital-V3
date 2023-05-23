@@ -1,10 +1,7 @@
 package hospital.methods;
 
 
-import hospital.repo.ListDiseases;
-import hospital.repo.Patient;
-import hospital.repo.Rooms;
-import hospital.repo.WrongInput;
+import hospital.repo.*;
 import hospital.dbConnect.Connectiondb;
 import hospital.dbConnect.SqlQueries;
 
@@ -87,19 +84,12 @@ public class PatientsMethods extends Connectiondb implements WrongInput {
             throw new RuntimeException(e);
         }
 
-        new SqlQueries().addPatient(patientId, patientName, patientSurname, patientDisease,drId);
-
         int roomNumber=0;
         int floorNumber = drId;
 
 
         switch (drId){
-            case 1 ->
-            {
-                roomNumber = Rooms.firstFloorNumberRoom++;
-
-            }
-
+            case 1 -> roomNumber = Rooms.firstFloorNumberRoom++;
             case 2 -> roomNumber = Rooms.secondFloorNumberRoom++;
             case 3 -> roomNumber = Rooms.thirdFloorNumberRoom++;
             case 4 -> roomNumber = Rooms.fourthFloorNumberRoom++;
@@ -111,10 +101,12 @@ public class PatientsMethods extends Connectiondb implements WrongInput {
             case 10 ->roomNumber = Rooms.tenthFloorNumberRoom++;
         }
 
+        new FloorMethods().addRoom(floorNumber,roomNumber);
+
         Patient newPatient = new Patient(patientId, patientName, patientSurname, patientDisease, roomNumber);
         patientId++;
 
-
+        new SqlQueries().addPatient(patientId, patientName, patientSurname, patientDisease,drId,roomNumber);
 
         System.out.println(newPatient);
 
@@ -226,9 +218,10 @@ public class PatientsMethods extends Connectiondb implements WrongInput {
         String sql = "select * from t_patients where patient_id = ?";
         settPrepareStatement(sql);
 
+        int roomNo=0;
         try {
 
-             prst.setInt(1, patientIdSearch);
+            prst.setInt(1, patientIdSearch);
             ResultSet resultSet =  prst.executeQuery();
             if (resultSet.next()) {
                 patient = new Patient();
@@ -236,6 +229,7 @@ public class PatientsMethods extends Connectiondb implements WrongInput {
                 patient.setName(resultSet.getString("name"));
                 patient.setSurname(resultSet.getString("surname"));
                 patient.setDisease(resultSet.getString("diseases"));
+                roomNo=resultSet.getInt("room_number");
 
             } else {
                 System.out.println("patient with an ID of " + patientIdSearch + " could not be found");
@@ -246,6 +240,10 @@ public class PatientsMethods extends Connectiondb implements WrongInput {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+
+
+        new FloorMethods().removeRoom(roomNo);
 
 
         System.out.println(patient + "\n patient was discharged");
