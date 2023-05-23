@@ -7,6 +7,17 @@ import java.sql.SQLException;
 
 public class SqlQueries extends Connectiondb {
 
+    public void createDiseases(){
+        try {
+            st.execute("create table if not exists t_disease("+
+                    "doctor_id integer not null," +
+                    "disease varchar(255) not null unique)");
+        } catch (SQLException e) {
+            System.out.println();;
+
+        }
+    }
+
 
 
     public void createDoctorTable() {
@@ -58,9 +69,9 @@ public class SqlQueries extends Connectiondb {
 
     }
 
-    public void addPatient(int id, String name, String surname, String diseases) {
+    public void addPatient(int id, String name, String surname, String diseases, int drId) {
         try {
-            st.execute("insert into t_patients values(" + id + ",'" + name + "'," + "'" + surname + "'," + "'" + diseases + "')");
+            st.execute("insert into t_patients values(" + id + ",'" + name + "'," + "'" + surname + "'," + "'" + diseases + "',"+ drId+" )");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

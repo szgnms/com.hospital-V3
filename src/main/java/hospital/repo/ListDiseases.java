@@ -1,9 +1,11 @@
 package hospital.repo;
 
+import hospital.dbConnect.Connectiondb;
 import hospital.diseases.Diseases;
 import hospital.methods.MainMenuMethods;
 import hospital.methods.PatientsMethods;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +15,7 @@ import static hospital.methods.MainMenuMethods.menuSecim;
 import static hospital.methods.MainMenuMethods.scan;
 
 public class ListDiseases {
+
     List<Diseases> aestheticsPlasticSurgeryList = new ArrayList<>();
     List<Diseases> anesthesiaAndReanimationList = new ArrayList<>();
     List<Diseases> dermatologyList = new ArrayList<>();
@@ -27,6 +30,8 @@ public class ListDiseases {
     List<List> diseasesList = new ArrayList<>();
 
     public void diseasesList() {
+
+
 
         aestheticsPlasticSurgeryList.add(Diseases.BREAST_AUGMENTATION_OR_REDUCTIOM);
         aestheticsPlasticSurgeryList.add(Diseases.FACELIFT);

@@ -72,9 +72,18 @@ public class PatientsMethods extends Connectiondb implements WrongInput {
         patientSurname = scan.next();
         System.out.println("Please select the Disease of the Patient");
         new ListDiseases().selectDisease();
+        int drId=0;
 
-        new SqlQueries().addPatient(patientId, patientName, patientSurname, patientDisease);
+        try {
+            rs = st.executeQuery(" select * from t_disease where  disease ilike '"+patientDisease+"'");
+            while (rs.next()){
+                drId=rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
+        new SqlQueries().addPatient(patientId, patientName, patientSurname, patientDisease,drId);
 
 
         Patient newPatient = new Patient(patientId, patientName, patientSurname, patientDisease, Rooms.firstFloorNumberRoom);
