@@ -16,10 +16,6 @@ public class MainMenuMethods implements WrongInput {
     public static Scanner scan = new Scanner(System.in);
     public static String menuSecim;
 
-    static int doctorId = 1000;
-    static int patientId = 2000;
-
-
     public void hospitalRun() {
         System.out.println(GREEN + "=================" + CYAN + " WELCOME TO DEV3 HOSPITAL" + GREEN + "=================");
         System.out.println(GREEN + "========================" + CYAN + " MAIN MENU" + GREEN + "=========================\n" + RED + "Please select ->");

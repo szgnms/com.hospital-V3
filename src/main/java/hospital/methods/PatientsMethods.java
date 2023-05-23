@@ -25,6 +25,8 @@ public class PatientsMethods extends Connectiondb implements WrongInput {
     public static String patientDisease;
     int patientIdSearch;
 
+   int  patientId=0;
+
 
 
     void patientMenu() {
@@ -179,12 +181,14 @@ public class PatientsMethods extends Connectiondb implements WrongInput {
         String ptDiName ="";
         String ptDiSurname="";
         String ptDidisease="";
+        int drId1=0;
         try {
             rs= st.executeQuery("Select * from t_patients where patient_id = " + patientIdSearch);
             while (rs.next()) {
                 ptDiName=rs.getString(2);
                 ptDiSurname=rs.getString(3);
                 ptDidisease=rs.getString(4);
+                drId1=rs.getInt(5);
 
 
             }
@@ -192,7 +196,7 @@ public class PatientsMethods extends Connectiondb implements WrongInput {
             throw new RuntimeException(e);
         }
 
-        new SqlQueries().addDischargePatient(patientIdSearch,ptDiName,ptDiSurname,ptDidisease);
+        new SqlQueries().addDischargedPatient(patientIdSearch,ptDiName,ptDiSurname,ptDidisease,drId1);
         new SqlQueries().deletePatientWithId(patientIdSearch);
         patientMenu();
     }

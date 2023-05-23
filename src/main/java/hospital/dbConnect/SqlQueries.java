@@ -35,7 +35,7 @@ public class SqlQueries extends Connectiondb {
     public void createDischargePatient() {
         try {
             st.execute("CREATE TABLE IF NOT EXISTS t_discharge_patient(" +
-                    "patient_id INTEGER PRIMARY KEY not null," +
+                    "patient_id INTEGER not null," +
                     "name VARCHAR(255) NOT NULL," +
                     "surname VARCHAR(255) NOT NULL," +
                     "diseases varchar(255) not null," +
@@ -52,8 +52,8 @@ public class SqlQueries extends Connectiondb {
                     "name varchar(255) not null," +
                     "surname varchar(255) not null," +
                     "diseases varchar(255) not null," +
-                    "doctors_id INTEGER   ," +
-                    "constraint doctor_fk foreign key (doctors_id) references t_doctors (doctor_id) )");
+                    "doctors_id INTEGER  )");
+                   // "constraint doctor_fk foreign key (doctors_id) references t_doctors (doctor_id) )");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -89,7 +89,7 @@ public class SqlQueries extends Connectiondb {
 
     public void addDischargedPatient(int id, String name, String surname, String diseases, int doctorId) {
         try {
-            st.execute("insert into t_discharge_patient values(" + id + ",'" + name + "'," + "'" + surname + "'," + "'" + diseases + "'"+doctorId+" )");
+            st.execute("insert into t_discharge_patient values(" + id + ",'" + name + "'," + "'" + surname + "'," + "'" + diseases + "',"+doctorId+" )");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

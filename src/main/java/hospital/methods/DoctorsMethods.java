@@ -1,8 +1,6 @@
 package hospital.methods;
 
 import hospital.clinics.*;
-import hospital.dbConnect.Connectiondb;
-import hospital.diseases.Diseases;
 import hospital.repo.WrongInput;
 import hospital.dbConnect.SqlQueries;
 
@@ -23,6 +21,7 @@ public class DoctorsMethods implements WrongInput {
     private String doctorSurname;
     private String doctorBranch;
     int doctorIdSearch;
+    int doctorId=0;
 
    static List<String> branchList = new ArrayList<>();
 
