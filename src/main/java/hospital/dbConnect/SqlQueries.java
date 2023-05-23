@@ -63,7 +63,9 @@ public class SqlQueries extends Connectiondb {
                     "name varchar(255) not null," +
                     "surname varchar(255) not null," +
                     "diseases varchar(255) not null," +
-                    "doctors_id INTEGER  )");
+                    "doctors_id INTEGER,  " +
+                    "room_number INTEGER)");
+
                    // "constraint doctor_fk foreign key (doctors_id) references t_doctors (doctor_id) )");
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -80,9 +82,9 @@ public class SqlQueries extends Connectiondb {
 
     }
 
-    public void addPatient(int id, String name, String surname, String diseases, int drId) {
+    public void addPatient(int id, String name, String surname, String diseases, int drId, int room) {
         try {
-            st.execute("insert into t_patients values(" + id + ",'" + name + "'," + "'" + surname + "'," + "'" + diseases + "',"+ drId+" )");
+            st.execute("insert into t_patients values(" + id + ",'" + name + "'," + "'" + surname + "'," + "'" + diseases + "',"+ drId+","+room+" )");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
