@@ -66,6 +66,7 @@ public class PatientsMethods extends Connectiondb implements WrongInput {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        patientId++;
         System.out.println("Please enter the Name of the Patient");
         patientName = scan.next();
         System.out.println("Please enter the Surname of the Patient");
@@ -103,7 +104,7 @@ public class PatientsMethods extends Connectiondb implements WrongInput {
         new FloorMethods().addRoom(floorNumber,roomNumber);
 
         Patient newPatient = new Patient(patientId, patientName, patientSurname, patientDisease, roomNumber);
-        patientId++;
+
 
         new SqlQueries().addPatient(patientId, patientName, patientSurname, patientDisease,drId,roomNumber);
 
